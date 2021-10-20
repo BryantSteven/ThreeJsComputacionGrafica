@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThreeJS C Grafica</title>
+</head>
+
+<body>
+  <script type="module">
+    import * as THREE from "./three.module.js";
+    import { OrbitControls } from "./OrbitControls.js";
+    //import Stats from "node_modules/three/examples/jsm/libs/stats.module.js";
+
+
+    //creating scene
+    var scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+
+    //add camera
+    var camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight
+    );
+
+    //renderer
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    //add geometry
+    var geometry = new THREE.BoxGeometry(2, 2, 2, 5, 5, 5);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xff0000,
+      wireframe: true,
+    });
+    var object = new THREE.Mesh(geometry, material);
+    scene.add(object);
+
+    var geometry = new THREE.BoxGeometry(5, 2, 2, 5, 5, 5);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xff0000,
+      wireframe: true,
+    });
+    var object = new THREE.Mesh(geometry, material);
+    object.position.x = 0;
+    object.position.y = 4;
+    scene.add(object);
+
+    var object = new THREE.Mesh(new THREE.TetrahedronGeometry(2), material);
+    object.position.x = -5;
+    object.position.y = 5;
+    scene.add(object);
+
+    var object = new THREE.Mesh(
+      new THREE.SphereGeometry(1.5, 32, 32),
+      material
+    );
+    object.position.x = 5;
+    object.position.y = 5;
+    scene.add(object);
+
+
+    camera.position.z = 15;
+
+    var controls = new OrbitControls(camera, renderer.domElement);
+
+    window.addEventListener("resize", redimensionar);
+
+    function redimensionar() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.render(scene, camera);
+    }
+
+    //stats
+    //const stats = Stats()
+    //document.body.appendChild(stats.dom)
+
+    //animation
+    var animate = function () {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+      //stats.update() 
+    };
+
+    animate();
+  </script>
+</body>
+
+</html>
