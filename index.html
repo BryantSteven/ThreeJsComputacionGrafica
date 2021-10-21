@@ -12,7 +12,7 @@
   <script type="module">
     import * as THREE from "./three.module.js";
     import { OrbitControls } from "./OrbitControls.js";
-    //import Stats from "node_modules/three/examples/jsm/libs/stats.module.js";
+    import Stats from "/node_modules/three/examples/jsm/libs/stats.module.js";
 
 
     //creating scene
@@ -76,19 +76,18 @@
       renderer.render(scene, camera);
     }
 
-    //stats
-    //const stats = Stats()
-    //document.body.appendChild(stats.dom)
+    
+    const stats = Stats()
+    document.body.appendChild(stats.dom)
 
     //animation
     var animate = function () {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
-      //stats.update() 
+      stats.update() 
     };
 
     animate();
   </script>
 </body>
-
 </html>
