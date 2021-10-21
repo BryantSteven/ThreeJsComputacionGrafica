@@ -8,11 +8,11 @@
 </head>
 
 <body>
-  <a href="/ThreeJsComputacionGrafica/character.html">Click aqui para ir al personaje</a>
+  <a href="/character.html">Click aqui para ir al personaje</a>
   <script type="module">
     import * as THREE from "./three.module.js";
     import { OrbitControls } from "./OrbitControls.js";
-    import Stats from "./node_modules/three/examples/jsm/libs/stats.module.js";
+    import Stats from 'three';
 
 
     //creating scene
@@ -76,7 +76,7 @@
       renderer.render(scene, camera);
     }
 
-    
+
     const stats = Stats()
     document.body.appendChild(stats.dom)
 
@@ -84,10 +84,11 @@
     var animate = function () {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
-      stats.update() 
+      stats.update()
     };
 
     animate();
   </script>
 </body>
+
 </html>
